@@ -1,0 +1,5 @@
+# Paso de pre-training MAE (simplificado)
+visible, masked, mask_idx = random_masking(patches, ratio=0.75)
+visible_feats = encoder(visible + pe_table[visible_idx])
+pred_pixels   = decoder(visible_feats, mask_tokens + pe_table[mask_idx])
+loss = MSE(pred_pixels, original_pixels[mask_idx])
